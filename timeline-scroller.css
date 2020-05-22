@@ -1,0 +1,207 @@
+/****** timeline scroller ******/
+.timeline-container .timeline-button h2 {
+    margin: 0;
+    line-height: 60px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 900;
+    color: #263137;
+    display: inline-block;
+}
+
+.timeline-container {
+    list-style: none;
+    max-width: 1200px;
+    margin: 30px auto 0 auto;
+    position: relative;
+    padding: 0 !important;
+}
+
+.timeline-container::before {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 3px;
+    background-color: #e5e9eb;
+    left: 50%;
+    margin-left: -1.5px;
+    z-index: 1;
+}
+
+.panel.timeline {
+    position: relative;
+    width: 50%;
+    box-shadow: none;
+    padding: 0;
+}
+
+.panel.timeline .HtmlContent {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    border-top: 5px solid #e5e9eb;
+    padding: 15px 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    background: #ffffff;
+}
+
+.timeline-container .panel.timeline .HtmlContent {
+    width: 80%;
+}
+
+.panel.timeline-left {
+    float: left;
+    margin-left: -2px;
+    padding-left: 2px;
+}
+
+.panel.timeline-right {
+    float: right;
+    margin-right: -2px;
+    padding-right: 2px;
+}
+
+.panel.timeline-right .HtmlContent {
+    float: right;
+}
+
+.timeline-button {
+    background: #e5e9eb;
+    border-radius: 50%;
+    text-align: center;
+    width: 60px;
+    position: relative;
+    top: -20px;
+    height: 60px;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.timeline-button.active {
+    background: #69be28;
+    width: 70px;
+    height: 70px;
+}
+
+.timeline-button.active h2 {
+    color: #ffffff;
+    line-height: 70px;
+}
+
+.timeline-left .timeline-button {
+    float: right;
+    margin-right: -33px;
+}
+
+.timeline-left .timeline-button.active {
+    margin-right: -38px;
+}
+
+.timeline-right .timeline-button {
+    float: left;
+    margin-left: -33px;
+}
+
+.timeline-right .timeline-button.active {
+    float: left;
+    margin-left: -38px;
+}
+
+.timeline .HtmlContent {
+    position: relative;
+}
+
+.timeline-container .timeline .HtmlContent::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 0;
+    width: 0;
+    border: 20px solid transparent;
+}
+
+.timeline-container .timeline-left .HtmlContent::after {
+    right: -40px;
+    border-left-color: #e5e9eb;
+}
+
+.timeline-container .timeline-right .HtmlContent::after {
+    left: -40px;
+    border-right-color: #e5e9eb;
+}
+
+.timeline-container .panel.timeline .HtmlContent {
+    opacity: 0;
+    -moz-transition: 600ms ease-in-out 100ms;
+    -webkit-transition: 600ms ease-in-out 100ms;
+    -o-transition: 600ms ease-in-out 100ms;
+    transition: 600ms ease-in-out 100ms;
+}
+
+.timeline-container .panel.timeline .HtmlContent.in-view {
+    z-index: 5;
+}
+
+.timeline-container .panel.timeline-left .HtmlContent {
+    -moz-transform: translate3d(-200px, 0px, 0px);
+    -webkit-transform: translate3d(-200px, 0px, 0px);
+    -o-transform: translate(-200px, 0px);
+    -ms-transform: translate(-200px, 0px);
+    transform: translate3d(-200px, 0px, 0px);
+}
+
+.timeline-container .panel.timeline-right .HtmlContent {
+    -moz-transform: translate3d(200px, 0px, 0px);
+    -webkit-transform: translate3d(200px, 0px, 0px);
+    -o-transform: translate(200px, 0px);
+    -ms-transform: translate(200px, 0px);
+    transform: translate3d(200px, 0px, 0px);
+}
+
+.timeline-container .panel.timeline .HtmlContent.in-view {
+    opacity: 1;
+    -moz-transition: 600ms ease-in-out 100ms;
+    -webkit-transition: 600ms ease-in-out 100ms;
+    -o-transition: 600ms ease-in-out 100ms;
+    transition: 600ms ease-in-out 100ms;
+    -moz-transform: translate3d(0px, 0px, 0px);
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    -o-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+}
+
+@media (max-width: 767px) {
+    .panel.timeline .timeline-button {
+        top: 0px;
+        float: none;
+        margin: 0 auto;
+    }
+
+    .timeline-container .panel.timeline,
+    .timeline-container .panel.timeline .HtmlContent {
+        width: 100%;
+    }
+
+    .panel.timeline .HtmlContent {
+        position: relative;
+        float: none;
+        margin-left: 0;
+        margin-top: 40px;
+    }
+
+    .panel.timeline .HtmlContent::after {
+        border-color: transparent;
+        border-bottom-color: #eeeeee;
+        top: -40px;
+        left: 50%;
+    }
+
+    .timeline-left .HtmlContent::after {
+        margin-left: -19px;
+    }
+
+    .timeline-right .HtmlContent::after {
+        margin-left: -21px;
+    }
+}
