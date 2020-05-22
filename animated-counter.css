@@ -15,3 +15,8 @@
     flex-basis: auto;
     border-radius: 4px;
 }
+.animated-counter h3 {
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.2;
+}
