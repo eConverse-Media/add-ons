@@ -1,1 +1,17 @@
-.counter-wrap{display:flex;flex-wrap:wrap;justify-content:center}.animated-counter{padding:40px 0;background:#5ab53c;text-align:center;margin:20px;width:350px;max-width:100%;color:#fff;min-height:unset;flex-basis:auto;border-radius:4px}
+.counter-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.animated-counter {
+    padding: 40px 0;
+    background: #5ab53c;
+    text-align: center;
+    margin: 20px;
+    width: 350px;
+    max-width: 100%;
+    color: #fff;
+    min-height: unset;
+    flex-basis: auto;
+    border-radius: 4px;
+}

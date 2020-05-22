@@ -1,1 +1,40 @@
-function showPanel(e){$(".timeline-button",e).addClass("active"),$(".HtmlContent",e).addClass("in-view")}function hidePanel(e){$(".timeline-button",e).removeClass("active"),$(".HtmlContent",e).removeClass("in-view")}function checkIfInView(e){var i=$(window).height(),n=$(window).width(),t=$(window).scrollTop(),l=t+i;$(".timeline-item").each(function(){var e=$(this),i=(e.outerHeight(),e.offset().top+100),o=e.offset().top;n<768?showPanel(e):o>=t&&i<=l?showPanel(e):hidePanel(e)})}$(function(){$(".panel.timeline").wrap('<li class="timeline-item clearfix" />'),$(".timeline-item").wrapAll('<ul class="timeline-container" />'),$(".timeline-container").append('<div style="clear: both;" />'),$(".timeline h2").wrap('<div class="timeline-button" />'),$(window).on("scroll resize",checkIfInView),$(window).trigger("scroll")});
+$(function () {
+	$('.panel.timeline').wrap('<li class="timeline-item clearfix" />');
+	$('.timeline-item').wrapAll('<ul class="timeline-container" />');
+	$('.timeline-container').append('<div style="clear: both;" />');
+	$('.timeline h2').wrap('<div class="timeline-button" />');
+	$(window).on('scroll resize', checkIfInView);
+	$(window).trigger('scroll');
+});
+
+function showPanel(item) {
+	$('.timeline-button', item).addClass('active');
+	$('.HtmlContent', item).addClass('in-view');
+}
+
+function hidePanel(item) {
+	$('.timeline-button', item).removeClass('active');
+	$('.HtmlContent', item).removeClass('in-view');
+}
+function checkIfInView(val) {
+	var windowHeight = $(window).height(),
+		windowWidth = $(window).width(),
+		windowTopPosition = $(window).scrollTop(),
+		windowBottomPosition = windowTopPosition + windowHeight;
+		
+	$('.timeline-item').each(function () {
+		var timelineElement = $(this),
+			elementHeight = timelineElement.outerHeight(),
+			elementTopPosition = timelineElement.offset().top + 100,
+			elementBottomPosition = timelineElement.offset().top;
+			
+		if (windowWidth < 768) {
+			showPanel(timelineElement);
+		} else if ((elementBottomPosition >= windowTopPosition) &&
+		(elementTopPosition <= windowBottomPosition)) {
+			showPanel(timelineElement);
+		} else {
+			hidePanel(timelineElement);
+		}
+	});
+}

@@ -1,1 +1,291 @@
-function updateSelection(t,e,a){var i=$(t).find(".active").toArray(),r=[];$(i).each(function(){var t=$(this).attr("data-filter");r.push(t)}),e.indexOf("-")>-1&&(e=e.substring(0,e.indexOf("-"))),a[e]=r}function updateFilters(){var t=$(".filter-button-group").toArray(),e={};$(t).each(function(){var t=$(this),a=$(t).attr("class").split(/\s+/)[0];updateSelection("."+a,a,e)});var a=concatFilters(e);$("div[id*='DocumentPanel'] .row > .col-md-12 .Content div[id*='ListViewContent']").isotope({filter:a})}function concatFilters(t){var e=[];for(var a in t){var i=t[a];if(i.length)if(e.length){for(var r=[],l=0;l<e.length;l++)for(var n=0;n<i.length;n++){var s=e[l]+i[n];r.push(s)}e=r}else e=i.slice(0)}return e=e.join(", ")}function makinFilters(){categoryList=[],$('.label-search-tag:not([aria-label*="User"])').each(function(){var t=$(this);categoriesMaster={};var e=$(t).attr("aria-label"),a=e.indexOf(":"),i=e.slice(6,a),r=e.indexOf("tag=")+4,l=e.slice(r,e.length);categoriesMaster.categoryType=i,categoriesMaster.tag=l,categoryList.push(categoriesMaster)}),categoryList.forEach(function(t){var e=t.categoryType;e=e.replace(/\s+/g,"-").toLowerCase();var a=t.tag;a=a.replace(/\s+/g,"-").toLowerCase(),0===$(".dropdown-group .HtmlContent > div."+e+".filter-button-group").length&&$(".dropdown-group .HtmlContent").append('<div class="'+e+' filter-button-group "><div class="filter-content"><span class="filter-label">Filter by '+t.categoryType+'</span><ul class="multiple-select"></ul></div></div>'),$(".filter-button-group").hasClass(e)&&0===$('ul.multiple-select > li.checkbox-filter label input[data-filter=".'+a+'"]').length&&$("div."+e+".filter-button-group ul.multiple-select").append('<li class="checkbox-filter"><label class="container"><input type="checkbox" id="'+t.tag+'" data-filter=".'+a+'">'+t.tag+'<span class="checkmark"></span></label></li>')}),$(".filter-button-group").wrapAll('<div class="row "/>'),$(".filter-button-group .filter-content .multiple-select").prepend('<li class="checkbox-filter"><label class="container"><input type="checkbox" id="all" data-filter="">Show All Types<span class="checkmark"></span></label></li>')}$(function(){$('div[id*="DocumentPanel"]').parent().prepend('<div class="dropdown-group"><div class="HtmlContent"></div></div>'),$(".library-list").each(function(){var t=$(this),e=$(t).find("a.label-search-tag").toArray(),a=$(t).find("h3"),i=$(a).find("a").attr("href");$(a).parent().parent().prepend('<a href="'+i+'"><div class="img-container"/></a>');var r=$(t).find('div[id*="fileListInlineWrapper"] .listIconContainer div[id*="pnlImages"] a img'),l=$(r).attr("src"),n=$(t).find(".img-container");$(n).css("background-image",'url("'+l+'")');var s=$(t).find(".libListReptEntAttchLble");if($(s).parent().addClass("attachment-wrap"),$(t).addClass("iso"),e.length)for(var o=0;o<e.length;o++){var c=$(e[o]).attr("data-tag").toLowerCase();c=c.replace(/\s+/g,"-"),$(t).addClass(c)}}),makinFilters(),$(".filter-label").click(function(){$(this).parent().toggleClass("open")}),$("div[id*='DocumentPanel'] .row > .col-md-12 .Content div[id*='ListViewContent']").isotope({itemSelector:".library-list"});var t=$(".filter-button-group");$(t).each(function(e){w=window;var a=t[e];firstFilterClass=a.className.split(" ")[0],w["arr_"+firstFilterClass]=[]}),$(".checkbox-filter input").click(function(){var t,e=$(this),a=$(e).parents(".filter-button-group"),i=$(a).find(".checkbox-filter input").toArray(),r=$(a).attr("class").split(/\s+/)[0],l=$(a).find(".filter-label"),n=$(e).attr("id").toLowerCase(),s="Filter by";$(e).toggleClass("active");var o=$(e).attr("data-filter");if(!o&&$(e).hasClass("active"))for(var c=1;c<i.length;c++){var p=i[c];$(p).removeClass("active"),p.checked=!1}else $(i[0]).removeClass("active"),i[0].checked=!1;if(n=n.replace("-"," "),filterButtonGroup=$(".filter-button-group"),$(filterButtonGroup).each(function(e){var a=filterButtonGroup[e].className.split(" ")[0],i=a.replace(/-/g," ");switch(r){case a:o||(w["arr_"+a]=[]),t=w["arr_"+a],s+=" "+i}}),$(e).hasClass("active")&&n&&"all"!==n)t.push(n);else{var f=t.indexOf(n);-1!==f&&t.splice(f,1)}t.length?(t=t.join(", "),$(l).text(t),$(a).find(".filter-content").addClass("has-selection")):($(l).text(s),$(a).find(".filter-content").removeClass("has-selection")),updateFilters()}),$(document).click(function(t){var e,a=t.target;if($(a).parents(".filter-content").length){var i=$(a).parents(".filter-content");e=".filter-button-group:not(."+$(i).parent().attr("class").split(/\s+/)[0]+") .filter-content"}else e=".filter-content";$(e).removeClass("open")})});
+$(function () {
+
+    $('div[id*="DocumentPanel"]').parent().prepend('<div class="dropdown-group"><div class="HtmlContent"></div></div>');
+
+    $(".library-list").each(function () {
+        var self = $(this),
+            tags = $(self)
+                .find('a.label-search-tag')
+                .toArray();
+        var title = $(self).find('h3');
+        var href = $(title).find('a').attr('href');
+        $(title).parent().parent().prepend('<a href="' + href + '"><div class="img-container"/></a>');
+
+        var entryImg = $(self).find('div[id*="fileListInlineWrapper"] .listIconContainer div[id*="pnlImages"] a img');
+
+        var entryImgSrc = $(entryImg).attr('src');
+
+        var imgContainer = $(self).find('.img-container');
+
+        $(imgContainer).css('background-image', 'url("' + entryImgSrc + '")');
+
+        var entryAttachementList = $(self).find('.libListReptEntAttchLble');
+        $(entryAttachementList).parent().addClass('attachment-wrap');
+
+        $(self).addClass("iso");
+
+        if (tags.length) {
+            for (var i = 0; i < tags.length; i++) {
+                var tag = $(tags[i])
+                    .attr("data-tag")
+                    .toLowerCase();
+                tag = tag.replace(/\s+/g, "-");
+                $(self).addClass(tag);
+            }
+        }
+    });
+
+    makinFilters();
+
+    $(".filter-label").click(function () {
+        $(this)
+            .parent()
+            .toggleClass("open");
+    });
+
+    $("div[id*='DocumentPanel'] .row > .col-md-12 .Content div[id*='ListViewContent']").isotope({
+        itemSelector: ".library-list"
+    });
+
+    var contentText = [];
+
+    // for(var i = 0; i < $('.filter-button-group').length; i++ ) {
+
+    var groupFilterButtons = $('.filter-button-group')
+
+    $(groupFilterButtons).each(function (i) {
+
+        w = window;
+
+        var filterButtonGroupEach = groupFilterButtons[i];
+
+        firstFilterClass = filterButtonGroupEach.className.split(" ")[0];
+
+        // return firstFilterClass;
+
+        w['arr_' + firstFilterClass] = [];
+
+    });
+
+    // }
+
+    // Update Filters When Drop down input clicked
+    $(".checkbox-filter input").click(function () {
+        var self = $(this),
+            parent = $(self).parents(".filter-button-group"),
+            selectors = $(parent)
+                .find(".checkbox-filter input")
+                .toArray(),
+            parentGroup = $(parent)
+                .attr("class")
+                .split(/\s+/)[0],
+            label = $(parent).find(".filter-label"),
+            text = $(self)
+                .attr("id")
+                .toLowerCase(),
+            labelText,
+            defaultText = "Filter by";
+
+        //toggle active class
+        $(self).toggleClass("active");
+
+        //check for show all
+        var dataFilter = $(self).attr("data-filter");
+        if (!dataFilter && $(self).hasClass("active")) {
+            for (var i = 1; i < selectors.length; i++) {
+                var checkbox = selectors[i];
+                $(checkbox).removeClass("active");
+                checkbox.checked = false;
+            }
+        } else {
+            $(selectors[0]).removeClass("active");
+            selectors[0].checked = false;
+        }
+
+        // set dropdown label text
+        text = text.replace("-", " ");
+
+        filterButtonGroup = $('.filter-button-group');
+
+        $(filterButtonGroup).each(function (i) {
+
+            var filterButtonFirstElement = filterButtonGroup[i];
+            var elementFirstClass = filterButtonFirstElement.className.split(" ")[0];
+            var classConversion = elementFirstClass.replace(/-/g, ' ');
+
+            switch (parentGroup) {
+
+                case elementFirstClass:
+                    if (!dataFilter) {
+                        w['arr_' + elementFirstClass] = [];
+                    }
+                    labelText = w['arr_' + elementFirstClass];
+                    defaultText += " " + classConversion;
+                    break;
+            }
+
+        });
+
+        if ($(self).hasClass("active") && !!text && text !== "all") {
+            labelText.push(text);
+        } else {
+            var index = labelText.indexOf(text);
+            if (index !== -1) {
+                labelText.splice(index, 1);
+            }
+        }
+
+        if (labelText.length) {
+            labelText = labelText.join(", ");
+            $(label).text(labelText);
+            $(parent)
+                .find(".filter-content")
+                .addClass("has-selection");
+        } else {
+            $(label).text(defaultText);
+            $(parent)
+                .find(".filter-content")
+                .removeClass("has-selection");
+        }
+
+        updateFilters();
+
+    });
+
+    $(document).click(function (e) {
+        var target = e.target,
+            selector;
+
+        if ($(target).parents(".filter-content").length) {
+            var parent = $(target).parents(".filter-content"),
+                klass = $(parent)
+                    .parent()
+                    .attr("class")
+                    .split(/\s+/)[0];
+            selector = ".filter-button-group:not(." + klass + ") .filter-content";
+        } else {
+            selector = ".filter-content";
+        }
+        $(selector).removeClass("open");
+    });
+
+});
+
+function updateSelection(val, klass, filters) {
+    var checkboxes = $(val)
+        .find(".active")
+        .toArray(),
+        localFilters = [];
+
+    $(checkboxes).each(function () {
+        var dataFilter = $(this).attr("data-filter");
+        localFilters.push(dataFilter);
+    });
+
+    if (klass.indexOf("-") > -1) {
+        klass = klass.substring(0, klass.indexOf("-"));
+    }
+
+    filters[klass] = localFilters;
+}
+
+function updateFilters() {
+    var groups = $(".filter-button-group").toArray(),
+        filters = {};
+
+    $(groups).each(function () {
+        var self = $(this),
+            klass = $(self)
+                .attr("class")
+                .split(/\s+/)[0],
+            selector = "." + klass;
+
+        updateSelection(selector, klass, filters);
+    });
+
+    var filterVal = concatFilters(filters);
+
+    $("div[id*='DocumentPanel'] .row > .col-md-12 .Content div[id*='ListViewContent']").isotope({
+        filter: filterVal
+    });
+}
+
+function concatFilters(obj) {
+    var allFilters = [];
+
+    for (var prop in obj) {
+        var group = obj[prop];
+        if (!group.length) {
+            continue;
+        }
+
+        if (!allFilters.length) {
+            allFilters = group.slice(0);
+            continue;
+        }
+
+        var nextFilterList = [];
+
+        for (var i = 0; i < allFilters.length; i++) {
+            for (var j = 0; j < group.length; j++) {
+                var item = allFilters[i] + group[j];
+                nextFilterList.push(item);
+            }
+        }
+
+        allFilters = nextFilterList;
+    }
+
+    allFilters = allFilters.join(", ");
+
+    return allFilters;
+}
+
+function makinFilters() {
+
+    categoryList = [];
+
+    $('.label-search-tag:not([aria-label*="User"])').each(function () {
+        var self = $(this);
+        categoriesMaster = {};
+        var ariaLabels = $(self).attr('aria-label');
+        var filterCategory = ariaLabels.indexOf(':');
+        var categoryValue = ariaLabels.slice(6, filterCategory);
+        var tagValueStart = ariaLabels.indexOf('tag=') + 4;
+        var tagValue = ariaLabels.slice(tagValueStart, ariaLabels.length);
+        categoriesMaster.categoryType = categoryValue;
+        categoriesMaster.tag = tagValue;
+        categoryList.push(categoriesMaster);
+
+    });
+
+    categoryList.forEach(function (category) {
+
+        var categoryTypeClassConversion = category.categoryType;
+        categoryTypeClassConversion = categoryTypeClassConversion.replace(/\s+/g, '-').toLowerCase();
+
+        var categoryTagClassConversion = category.tag;
+        categoryTagClassConversion = categoryTagClassConversion.replace(/\s+/g, '-').toLowerCase();
+
+
+        if ($('.dropdown-group .HtmlContent > div.' + categoryTypeClassConversion + '.filter-button-group').length === 0) {
+            $('.dropdown-group .HtmlContent').append('<div class="' + categoryTypeClassConversion + ' filter-button-group "><div class="filter-content"><span class="filter-label">Filter by ' + category.categoryType + '</span><ul class="multiple-select"></ul></div></div>');
+        }
+
+        if ($('.filter-button-group').hasClass(categoryTypeClassConversion)) {
+            if ($('ul.multiple-select > li.checkbox-filter label input[data-filter=".' + categoryTagClassConversion + '"]').length === 0) {
+                $('div.' + categoryTypeClassConversion + '.filter-button-group ul.multiple-select').append('<li class="checkbox-filter"><label class="container"><input type="checkbox" id="' + category.tag + '" data-filter=".' + categoryTagClassConversion + '">' + category.tag + '<span class="checkmark"></span></label></li>');
+            }
+        }
+
+    });
+
+    $('.filter-button-group').wrapAll('<div class="row "/>');
+
+
+    $('.filter-button-group .filter-content .multiple-select').prepend('<li class="checkbox-filter"><label class="container"><input type="checkbox" id="all" data-filter="">Show All Types<span class="checkmark"></span></label></li>');
+    /*
+    $('.dropdown-group .HtmlContent').append('<a onclick="updateFilters();">Apply</a>');
+    */
+
+}
