@@ -1,0 +1,42 @@
+/****** fundraising progress ******/
+
+.fundraising-progress {
+	margin-top: 20px;
+}
+.fundraising-progress svg {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/*** fundraising progress svg ***/
+.cls-1 {
+	fill: #f9f9f9;
+}
+.cls-2 {
+	fill: #db2638;
+}
+#prog-bar rect {
+	animation-fill-mode: forwards;
+	animation-iteration-count: 1;
+}
+
+/* fundraising numbers */
+.funds-raised {
+	color: #ee3a43;
+	font-size: 54px;
+	font-weight: 700;
+}
+.fundraising-goal h2,
+.fundraising-goal .HtmlContent {
+	color: #0a2c49;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+.fundraising-goal h2 {
+	float: left;
+	padding-right: 5px;
+	margin-top: 0;
+	margin-right: 0;
+}
+
