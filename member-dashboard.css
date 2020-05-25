@@ -51,38 +51,17 @@
 
 .dashboard-toggle button {
     background-color: #fff;
-    padding: 2px 10px;
-    color: #1F1F20;
-    font-size: 14px;
-    line-height: 20px;
+    padding: 5px 10px;
+    color: #263137;
+    font-size: 12px;
+    line-height: 1;
     font-weight: 700;
+    letter-spacing: 0.7px;
     text-transform: uppercase;
     position: absolute;
     left: calc(50% - 585px);
     bottom: 0;
-    transform: translateY(50%);
-    border-radius: 4px;
     border: none;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-.open.dashboard-toggle button {
-    transform: translateY(-50%);
-}
-
-.dashboard-toggle button::after {
-    font-family: VHMA;
-    color: #385E9D;
-    font-size: 20px;
-    margin-left: 4px;
-    line-height: 20px;
-    content: '\f020';
-    display: inline-block;
-    transform: translateY(2px);
-}
-
-.open.dashboard-toggle button::after {
-    content: '\f028';
 }
 
 /*** user details ***/
@@ -112,6 +91,19 @@
 .open .member-dashboard-img a[id*="lnkDisplay"] {
     width: 100px;
     height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background-color: #d8d9db;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.member-dashboard-img a > img,
+.member-dashboard-img a[id*="lnkDiplay"] > img {
+    position: relative;
+    max-height: 100% !important;
+    width: auto;
 }
 
 .greeting {
