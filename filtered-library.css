@@ -233,6 +233,14 @@ div.filter-button-group .filter-content:focus {
     height: 100%;
 }
 
+.grid .lbirary-list div[id*="NameBlock"] >.col-md-12 div:nth-child(4) {
+    height: 130px;
+}
+
+.grid .lbirary-list div[id*="NameBlock"] >.col-md-12 div:nth-child(4) img, .grid .lbirary-list div[id*="NameBlock"] >.col-md-12 div:nth-child(4) iframe {
+ display: none;
+}
+
 .grid .library-list .attachment-wrap {
     position: absolute;
     bottom: -15px;
