@@ -26,33 +26,132 @@
     padding: 0;
 }
 
-.grid .Content>.row,
-.grid ul.pagination {
+.grid div[id*="DocumentPanel"] {
+    background-color: #fff;
+}
+
+.grid div[id*="DocumentPanel"] div[id*="ListViewContent"] .pagination {
     display: none;
 }
 
-.grid div.dropdown-group {
-    width: 100%;
-    float: none;
-    padding: 0px;
-    position: relative;
-    z-index: 2;
+.grid div[id*="DocumentPanel"]>.row.no-margin>.col-md-12 {
+    padding: 0;
 }
 
-.dropdown-group > .HtmlContent {
-    padding-left: 5px;
-    padding-right: 5px;
+.grid div[id*="ContentWrapper"]>.row.row-wide>.col-md-12 {
+    padding: 0;
 }
 
-div.filter-button-group {
-    position: relative;
+.grid span[id*="ItemRating"] {
+    display: none;
+}
+
+.grid .row.library-list {
+    padding-top: 0;
+    border: 1px solid #aea79f;
+    background-color: transparent;
+    width: 340px;
     float: left;
-    width: 275px;
-    margin: 0 10px;
+    margin: 5px;
+    margin-bottom: 30px;
+    transition: 0.3s;
+    overflow: hidden;
+    height: 450px;
+    padding: 15px;
+}
+
+.grid .library-list .img-container {
+    height: 150px;
+    margin: -15px;
+    margin-bottom: 5px;
+    background-color: #eee;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    transition: 0.3s;
+}
+
+.grid .library-list .img-container:hover,
+.grid .library-list .img-container:focus {
+    background-color: #d7d7d7;
+    transition: 0.3s;
+}
+
+.grid .library-list .img-container[style*="undefined"]::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: block;
+    height: 75px;
+    width: 75px;
+    line-height: 75px;
+    font-size: 55px;
+    text-align: center;
+    font-family: 'eConverse';
+    content: '\f017';
+    color: #7cc24f;
+    background-color: #eee;
+    transition: 0.3s;
+}
+
+.grid .library-list .img-container[style*="undefined"]:hover::before,
+.grid .library-list .img-container[style*="undefined"]:hover::before {
+    background-color: #d7d7d7;
+    transition: 0.3s;
+}
+
+.grid .library-list .col-md-12 {
+    padding: 0;
+}
+
+.grid .library-list .content-tags {
+    font-size: 0;
+}
+
+.grid .library-list .libListReptEntAttchLble {
+    border-bottom: 0;
+}
+
+.grid .library-list .row {
+    margin: 0;
+}
+
+.grid .library-list>div[id*="NameBlock"] {
+    padding: 0;
+}
+
+.grid .dropdown-group {
     margin-bottom: 15px;
 }
 
-div.filter-button-group .filter-content {
+.grid .dropdown-group .HtmlContent {
+    text-align: right;
+}
+
+.grid .dropdown-group a {
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: #7cc24f;
+    color: #fff;
+    font-weight: 500px;
+    border-radius: 0;
+    font-style: normal;
+    text-decoration: none;
+    padding: 7px 15px;
+}
+
+.grid div.filter-button-group {
+    position: relative;
+    width: 290px;
+    float: left;
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+
+.grid div.filter-button-group .filter-content {
     width: 100%;
     padding: 0;
     position: relative;
@@ -60,15 +159,38 @@ div.filter-button-group .filter-content {
     /* z-index: 1; */
     background: #fff;
     border: 1px solid #e5e9eb;
+    transition: 0.3s;
 }
 
-div.filter-button-group .filter-content.open {
-    display: block;
-    border: 1px solid #e5e9eb;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+.grid div.filter-button-group .filter-content:hover,
+div.filter-button-group .filter-content:focus {
+    background: #eee;
+    transition: 0.3s;
 }
 
-.filter-button-group ul.multiple-select {
+.grid div.filter-button-group .filter-label {
+    padding: 6px 25px 6px 12px;
+    width: 100%;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    /* z-index: 11; */
+    overflow: unset;
+    text-transform: capitalize;
+    text-align: left;
+}
+
+.grid div.filter-button-group .filter-label::after {
+    content: "\f016";
+    position: absolute;
+    right: 0px;
+    font-family: "eConverse";
+    font-size: 25px;
+    line-height: 25px;
+    color: #202020;
+}
+
+.grid .filter-button-group ul.multiple-select {
     list-style: none;
     padding: 0px;
     margin: 0;
@@ -77,99 +199,74 @@ div.filter-button-group .filter-content.open {
     width: 100%;
 }
 
-div.filter-button-group .filter-content.open ul.multiple-select {
+.grid div.filter-button-group .filter-content.open ul.multiple-select {
     display: block;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     background: #fff;
     z-index: 5;
 }
 
-.filter-button-group ul.multiple-select li.checkbox-filter {
+.grid .filter-button-group ul.multiple-select {
+    list-style: none;
+}
+
+.grid .filter-button-group ul.multiple-select li.checkbox-filter {
     padding: 4px 10px;
+    text-align: left;
 }
 
-div.filter-button-group .filter-label:after {
-    content: '\f0e6';
+.grid .filter-button-group ul.multiple-select li.checkbox-filter input {
+    margin-right: 4px;
+}
+
+.grid .filter-button-group ul.multiple-select li.checkbox-filter:hover,
+.grid .filter-button-group ul.multiple-select li.checkbox-filter:focus {
+    background-color: #f9f9f9;
+}
+
+.grid .filter-button-group ul.multiple-select li.checkbox-filter:hover label,
+.grid .filter-button-group ul.multiple-select li.checkbox-filter:focus label {
+    color: #7cc24f;
+}
+
+.grid .library-list div[id*="NameBlock"] {
+    height: 100%;
+}
+
+.grid .lbirary-list div[id*="NameBlock"] >.col-md-12 div:nth-child(4) {
+    height: 130px;
+}
+
+.grid .lbirary-list div[id*="NameBlock"] >.col-md-12 div:nth-child(4) img, .grid .lbirary-list div[id*="NameBlock"] >.col-md-12 div:nth-child(4) iframe {
+ display: none;
+}
+
+.grid .library-list .attachment-wrap {
     position: absolute;
-    right: 5px;
-    font-family: "General";
-    font-size: 10px;
-    line-height: 25px;
+    bottom: -15px;
+    left: -15px;
+    right: -15px;
+    padding: 15px;
+    background-color: white;
 }
 
-div.filter-button-group .filter-label {
-    padding: 10px 30px 10px 15px;
-    width: 100%;
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-    /* z-index: 11; */
-    overflow: hidden;
-}
-
-/* Customize the label (the container) */
-.filter-content .container {
-    display: block;
-    position: relative;
-    padding-left: 30px;
-    margin-bottom: 0px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.filter-content .container input {
+.grid .library-list .attachment-wrap::before {
     position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Create a custom checkbox */
-.filter-content .checkmark {
-    position: absolute;
-    top: 0;
+    top: -15px;
     left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #f3f2f4;
+    right: 0;
+    content: '';
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), #fff);
 }
 
-/* On mouse-over, add a grey background color */
-.filter-content .container:hover input~.checkmark {
-    background-color: #e5e9eb;
-}
-
-/* When the checkbox is checked, add blue background */
-.filter-content .container input:checked~.checkmark {
-    background-color: #4DA9DE;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.filter-content .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-.filter-content .container input:checked~.checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.filter-content .container .checkmark:after {
-    left: 7px;
-    top: 2px;
-    width: 7px;
-    height: 13px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+.grid div.dropdown-group {
+    width: 100%;
+    float: none;
+    padding: 0px;
+    position: relative;
+    z-index: 2;
 }
 
 /* no results message */
