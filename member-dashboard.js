@@ -1,6 +1,6 @@
 $(function () {
     var name = $('.HLWelcomeHeader .panel-body h4').text(),
-        greeting = '<div class="greeting"><span>Welcome back, </span><a href="profile">' + name + '!</a></div>',
+        greeting = '<div class="greeting"><span>Welcome back, </span><a href="profile">' + name + '</a></div>',
         linkToInbox = '/network/members/profile/myaccount/inbox/',
 		unreadEmailCount = $('a[id^="Welcome_Details_MessagesCount"]').length !== 0 ? parseInt($('a[id^="Welcome_Details_MessagesCount"]').text()) : 0,
         emailContent = '<div class="email-content"><a href ="' + linkToInbox + '"><i class="ft ft-envelope"></i>' + unreadEmailCount + ' unread messages</a></div>',
