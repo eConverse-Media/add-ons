@@ -22,7 +22,6 @@ $(function () {
 
     // make the second column
     $('.get-started, .dashboard-btn').wrapAll('<div class="dashboard-col-2 col-md-4" />');
-    $('.dashboard-btn').wrapAll('<div class="dashboard-btns" />');
 
     // make the dashboard
     $('div[class*="dashboard-col-"]').wrapAll('<div class="member-dashboard clearfix" />');
