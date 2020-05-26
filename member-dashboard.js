@@ -16,11 +16,9 @@ $(function () {
         $('.dashboard-col-1').append(progressText);
         $('.dashboard-col-1').append(progressBar);
     }
-    $('.dashboard-col-1').append($('.collapsed-message'));
 
-    $('.dashboard-link').each(function () {
-        $(this).appendTo('.dashboard-col-1');
-    });
+    $('.dashboard-link').wrapAll('<div class="dashboard-links" />');
+    $('.dashboard-links').appendTo('.dashboard-col-1');
 
     // make the second column
     $('.get-started, .dashboard-btn').wrapAll('<div class="dashboard-col-2 col-md-4" />');
