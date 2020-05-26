@@ -4,7 +4,7 @@ $(function () {
         linkToInbox = '/network/members/profile/myaccount/inbox/',
 		unreadEmailCount = $('a[id^="Welcome_Details_MessagesCount"]').length !== 0 ? parseInt($('a[id^="Welcome_Details_MessagesCount"]').text()) : 0,
         emailContent = '<div class="email-content"><a href ="' + linkToInbox + '"><i class="ft ft-envelope"></i>' + unreadEmailCount + ' unread messages</a></div>',
-        progressBar = $('#Welcome_Content div[id*="CompleteBarProgress"]').clone(),
+        progressBar = $('div[id*="CompleteBarProgress"]').clone(),
         progressText = '<span class="progress-text">Profile Completion</span>';
         
     // create the first column
