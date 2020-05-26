@@ -21,7 +21,7 @@ $(function () {
     $('.dashboard-links').appendTo('.dashboard-col-1');
 
     // make the second column
-    $('.get-started, .dashboard-btn').wrapAll('<div class="dashboard-col-2 col-md-4" />');
+    $('.get-started, .dashboard-btn').wrapAll('<div class="dashboard-col-2 col-md-3" />');
 
     // make the dashboard
     $('div[class*="dashboard-col-"]').wrapAll('<div class="member-dashboard clearfix" />');
