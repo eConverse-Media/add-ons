@@ -387,6 +387,9 @@
 .member-dashboard ul.slick-dots li.slick-active {
     opacity: 1;
 }
+.member-dashboard:not(.open) ul.slick-dots {
+    display: none;
+}
 
 @media (max-width: 991px) {
     .member-dashboard .row.row-wide.slick-dotted.slick-slider {
