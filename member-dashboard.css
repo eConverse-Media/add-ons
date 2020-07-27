@@ -373,6 +373,10 @@
 /*** slick dots for mobile ***/
 .member-dashboard ul.slick-dots {
     bottom: 25px;
+    display: none;
+}
+.member-dashboard.open ul.slick-dots {
+    display: block;
 }
 .member-dashboard ul.slick-dots li {
     background: #fff;
