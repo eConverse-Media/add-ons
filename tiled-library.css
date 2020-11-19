@@ -18,6 +18,7 @@
     background: #ffffff;
     word-wrap: break-word;
     padding-top: 0;
+    position: relative;
 }
 .tiled-library .img-container {
     height: 200px;
@@ -29,6 +30,28 @@
 }
 .tiled-library .library-list > div.col-md-12 {
     padding-top: 30px;
+}
+.tiled-library .library-list > .img-container + div.col-md-12 {
+    position: static;
+}
+.tiled-library .library-list > div.col-md-12:first-child {
+    padding-top: 50px;
+}
+.library-list > .col-md-12 > .pull-right:first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.library-list > .col-md-12 > .pull-right:first-child > .row:first-child {
+    float: left;
+    margin: 0;
+    padding-top: 12px;
+}
+.library-list > .col-md-12 > .pull-right:first-child > .row:last-child {
+    float: right;
+    margin: 0;
 }
 
 @media (max-width: 991px) {
