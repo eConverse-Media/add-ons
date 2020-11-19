@@ -1,0 +1,47 @@
+.tiled-library #LibaryEntryCountDiv,
+.tiled-library div[id*="CreateLibraryEntryContainer"],
+.tiled-library input[id*="rssRssFeedEntry_RSSFeed"] {
+    display: none;
+}
+.tiled-library div[id*="ListViewContent"] {
+    display: flex;
+    flex-wrap: wrap;
+}
+.tiled-library .library-list {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: calc(33.333333333% - 30px);
+    margin: 15px;
+    border: 1px solid #ebe9eb;
+    border-radius: 3px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    word-wrap: break-word;
+    padding-top: 0;
+}
+.tiled-library .img-container {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+.tiled-library .margin-bottom-medium img {
+    display: none;
+}
+.tiled-library .library-list > div.col-md-12 {
+    padding-top: 30px;
+}
+
+@media (max-width: 991px) {
+    .tiled-library .library-list {
+        flex-basis: calc(50% - 30px);
+    }
+}
+@media (max-width: 768px) {
+    .tiled-library .library-list {
+        flex-basis: calc(100% - 30px);
+    }
+    .tiled-library .library-list > div.col-md-12 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
