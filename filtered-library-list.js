@@ -13,6 +13,14 @@ $(function () {
 
         var entryImg = $(self).find('div[id*="fileListInlineWrapper"] .listIconContainer div[id*="pnlImages"] a img');
 
+        if ($(entryImg).length === 0) {
+
+            var entryImg = $(self).find(' div[id*="NameBlock"] > div:nth-child(4) .row .col-md-12 img:first-child ');
+
+            $(self).find(' div[id*="NameBlock"] > div:nth-child(4) .row .col-md-12 img ').hide();
+
+        }
+
         var entryImgSrc = $(entryImg).attr('src');
 
         var imgContainer = $(self).find('.img-container');
