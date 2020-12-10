@@ -213,7 +213,7 @@ div.filter-button-group .filter-label {
 }
 
 /* When the checkbox is checked, add blue background */
-.filter-content .container input:checked~.checkmark {
+.filter-content .container input.active~.checkmark {
     background-color: #4DA9DE;
 }
 
@@ -225,7 +225,7 @@ div.filter-button-group .filter-label {
 }
 
 /* Show the checkmark when checked */
-.filter-content .container input:checked~.checkmark:after {
+.filter-content .container input.active~.checkmark:after {
     display: block;
 }
 
