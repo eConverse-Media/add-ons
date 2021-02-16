@@ -7,19 +7,31 @@ $(function () {
             var url = 'https://api.connectedcommunity.org/api/v2.0/ResourceLibrary/GetLibraryDocuments',
                 maxResults = this.getAttribute('max-results'),
                 libraryKey = this.getAttribute('library-key'),
+                includeStaff = this.getAttribute('include-staff'),
                 body = {};
 
-                
+                if (!!maxResults) {
+                    body["MaxRecords"] = parseInt(maxResults);
+                }
+                if (!!libraryKey) {
+                    body["LibraryKey"] = libraryKey;
+                }
+                if (!!includeStaff) {
+                    body["IncludeStaff"] = includeStaff;
+                }
+
+            console.log('>>>>>>>>>> ', JSON.stringify(body));
 
             $.ajax({
                 url: url,
                 type: "POST",
                 datatype: 'json',
+                contentType: "application/json; charset=utf-8",
                 success: success,
                 headers: {
                     'HLIAMKey': '78e2c103-9b11-4e73-bb3d-5ecb6cf4005c'
                 },
-                body: body
+                data: $.isEmptyObject(body) ? null : JSON.stringify(body)
             });
 
             function success(resp) {
