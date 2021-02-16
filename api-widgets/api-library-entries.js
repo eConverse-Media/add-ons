@@ -20,8 +20,6 @@ $(function () {
                     body["IncludeStaff"] = includeStaff;
                 }
 
-            console.log('>>>>>>>>>> ', JSON.stringify(body));
-
             $.ajax({
                 url: url,
                 type: "POST",
