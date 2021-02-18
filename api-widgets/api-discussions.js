@@ -9,6 +9,8 @@ $(function () {
                 discussionKey = this.getAttribute('discussion-key'),
                 includeStaff = this.getAttribute('include-staff'),
                 descriptionLength = this.getAttribute('description-length'),
+                showAuthorImg = this.getAttribute('author-img'),
+                showDiscussionName = this.getAttribute('show-community'),
                 body = {};
 
             if (!!maxResults) {
@@ -53,7 +55,16 @@ $(function () {
 
                     $('<div class="discussion-post" />').appendTo('discussion-list');
                     currentElem = $('discussion-list .discussion-post:last-child');
-                    $(currentElem).append('<h3><a href="' + resp[i].LinkToReadPosts + '">' + resp[i].Subject + '</a></h3><h5><strong>By: </strong><a href=" ' + resp[i].LinkToAuthorProfile + '">' + resp[i].FirstLast + '</a></h5><h5><strong>Date:</strong> ' + dateText + '</h5><div>' + resp[i].Content + '</div>');
+                    $(currentElem).append('<h3><a href="' + resp[i].LinkToReadPosts + '">' + resp[i].Subject + '</a></h3><div class="byline-date-block"><div class="byline-date"><h5 class="author-details"><strong>By: </strong><a href=" ' + resp[i].LinkToAuthorProfile + '">' + resp[i].FirstLast + '</a></h5><h5 class="byline-date"><strong>Date:</strong> ' + dateText + '</h5></div></div><div>' + resp[i].Content + '</div>');
+
+                    if (!!showAuthorImg && 
+                        !!resp[i].IsImageExist) {
+                        $(currentElem).find('.byline-date-block').prepend('<img src="' + resp[i].PictureUrl + '" />');
+                    }
+
+                    if (!!showDiscussionName) {
+                        $(currentElem).append('<h4 class="community-name">' + resp[i].DiscussionName + '</h4>');
+                    }
                 }
             }
 

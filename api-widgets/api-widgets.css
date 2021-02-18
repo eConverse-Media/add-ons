@@ -56,12 +56,12 @@
     padding: 15px;
 }
 
-/*** blog-specific styling ***/
-.blog-elem .byline-date-block {
+/*** author images ***/
+.byline-date-block {
     display: flex;
     align-items: center;
 }
-.blog-elem .byline-date-block img {
+.byline-date-block img {
     margin-right: 10px;
 }
 
