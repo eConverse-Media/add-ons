@@ -35,7 +35,7 @@ $(function () {
                 headers: {
                     "HLIAMKey": "78e2c103-9b11-4e73-bb3d-5ecb6cf4005c"
                 },
-                data: JSON.stringify(body)
+                data: $.isEmptyObject(body) ? null : JSON.stringify(body)
             });
 
             function success(resp) {
