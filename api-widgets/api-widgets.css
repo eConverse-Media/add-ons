@@ -1,0 +1,71 @@
+.large-h2 h2 {
+    font-size: 36px;
+}
+
+/*** tiles ***/
+.widget-tile .HtmlContent > *,
+.widget-card .HtmlContent > * {
+    display: flex;
+    margin-left: -15px;
+    margin-right: -15px;
+    flex-wrap: wrap;
+}
+.widget-tile .HtmlContent > * > *,
+.widget-card .HtmlContent > * > * {
+    flex-basis: calc(33.33333333% - 30px);
+    margin: 15px;
+    background: #fff;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+.widget-tile .HtmlContent img {
+    max-width: 100%;
+}
+.widget-tile .text-container {
+    padding: 15px;
+}
+.widget-tile h3 {
+    margin-top: 0;
+    font-size: 18px;
+    line-height: 1.2;
+}
+.widget-tile h5 {
+    font-weight: normal;
+}
+.widget-tile h4.community-name {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e5e9eb;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/*** cards ***/
+.widget-card .img-container {
+    display: none;
+}
+.widget-card .HtmlContent > * > * {
+    padding: 15px;
+}
+
+/*** blog-specific styling ***/
+.blog-elem .byline-date-block {
+    display: flex;
+    align-items: center;
+}
+.blog-elem .byline-date-block img {
+    margin-right: 10px;
+}
+
+/*** no image ***/
+.no-image .blog-elem .img-container {
+    display: none;
+}

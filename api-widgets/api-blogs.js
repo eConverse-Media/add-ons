@@ -10,6 +10,10 @@ $(function () {
                 ignoreStaff = this.getAttribute('ignore-staff'),
                 descriptionLength = this.getAttribute('description-length'),
                 titleLength = this.getAttribute('title-length'),
+                includeAuthorImg = this.getAttribute('author-img'),
+                includeCommunity = this.getAttribute('include-community'),
+                includeRating = this.getAttribute('show-rating'),
+                includeComments = this.getAttribute('show-comments'),
                 body = {};
 
                 if (!!maxResults) {
@@ -59,21 +63,36 @@ $(function () {
                         title = title.substring(0, titleLength);
                     }
         
-                    $(currentElem).append('<h3><a href="' + resp[i].LinkToReadBlog + '">' + title + '</a></h3><h5><strong>By: </strong><a href=" ' + resp[i].Author.LinkToProfile + '">' + resp[i].Author.FirstName + ' ' + resp[i].Author.LastName + '</a></h5><h5><strong>Date:</strong> ' + dateText + '</h5>');
+                    $(currentElem).append('<div class="text-container"><h3><a href="' + resp[i].LinkToReadBlog + '">' + title + '</a></h3><div class="byline-date-block"></div>');
 
-                    $(currentElem).append('<div class="description-text" />');
+                    if (!!includeAuthorImg) {
+                        $(currentElem).find('.byline-date-block').append('<img src="' + resp[i].Author.PictureUrl + '" class="img-responsive" />');
+                    }
+
+                    $(currentElem).find('.byline-date-block').append('<div class="byline-date"><h5 class="author-details"><strong>By:</strong>&nbsp;<a href=" ' + resp[i].Author.LinkToProfile + '">' + resp[i].Author.FirstName + ' ' + resp[i].Author.LastName + '</a></h5></div>');
+
+                    $(currentElem).find('.byline-date-block .byline-date').append('<h5 class="entry-date"><strong>Date:</strong>&nbsp;' + dateText + '</h5>');
+
+                    if (!!includeCommunity &&
+                        resp[i].Community.CommunityName != null) {
+                        $(currentElem).find('.text-container').append('<h4 class="community-name">' + resp[i].Community.CommunityName + '</h4>');
+                    }
+
+                    $(currentElem).find('.text-container').append('<div class="description-text" />');
 
                     var descriptionText = $(currentElem).find('.description-text');
 
                     for (var j = 0; j < text.length; j++) {
                         if ($(text[j]).is('img')) {
                             $(currentElem).prepend(text[j]);
+                            $(currentElem).find('> img:first-child').wrap('<div class="img-container" />');
                             text.splice(j, 1);
                             j--;
                         } else if ($(text[j]).is('figure') &&
                         $(text[j]).hasClass('image')) {
                             var image = $(text[j]).find('img');
                             $(currentElem).prepend(image);
+                            $(currentElem).find('> img:first-child').wrap('<div class="img-container" />');
                             text.splice(j, 1);
                             j--;
                         } else {
@@ -90,6 +109,13 @@ $(function () {
                         $(descriptionText).text(plainText);
                     }
 
+                    if (!!includeRating) {
+                        $(currentElem).find('.text-container').append('<h6 class="blog-rating">Rating: ' + resp[i].RatingCount + '</h6>')
+                    }
+
+                    if (!!includeComments) {
+                        $(currentElem).find('.text-container').append('<h6 class="blog-comments">Comments: ' + resp[i].CommentCount + '</h6>')
+                    }
                 }
             }
 

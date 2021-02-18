@@ -8,29 +8,33 @@ $(function () {
                 maxResults = this.getAttribute('max-results'),
                 discussionKey = this.getAttribute('discussion-key'),
                 includeStaff = this.getAttribute('include-staff'),
-                hasParams = false;
+                descriptionLength = this.getAttribute('description-length'),
+                body = {};
 
             if (!!maxResults) {
-                url += (hasParams ? '&' : '?') + 'maxToRetrieve=' + maxResults;
-                hasParams = true;
+                body['MaxNumberToRetrieve'] = parseInt(maxResults);
             }
             if (!!discussionKey) {
-                url += (hasParams ? '&' : '?') + 'discussionKey=' + discussionKey;
-                hasParams = true;
+                body['DiscussionKeyFilter']= discussionKey;
             }
             if (!!includeStaff) {
-                url += (hasParams ? '&' : '?') + 'includeStaff=' + includeStaff;
-                hasParams = true;
+                body['IncludeStaffPosts'] = includeStaff;
             }
+            if (!!descriptionLength) {
+                body['MaxContentLength'] = parseInt(descriptionLength);
+            }
+
 
             $.ajax({
                 url: url,
-                type: "GET",
+                type: "POST",
                 datatype: 'json',
+                contentType: "application/json; charset=utf-8",
                 success: success,
                 headers: {
                     'HLIAMKey': '78e2c103-9b11-4e73-bb3d-5ecb6cf4005c'
-                }
+                },
+                data: $.isEmptyObject(body) ? null : JSON.stringify(body)
             });
 
             function success(resp) {
@@ -38,7 +42,7 @@ $(function () {
 
                     var currentElem;
 
-                    var date = new Date(resp[i].DatePosted),
+                    var date = new Date(resp[i].CreatedOn),
                         dateTime = date.toLocaleTimeString(),
                         dateDate;
 
@@ -49,7 +53,7 @@ $(function () {
 
                     $('<div class="discussion-post" />').appendTo('discussion-list');
                     currentElem = $('discussion-list .discussion-post:last-child');
-                    $(currentElem).append('<h3><a href="' + resp[i].LinkToMessage + '">' + resp[i].DiscussionName + '</a></h3><h5><strong>By: </strong><a href=" ' + resp[i].Author.LinkToProfile + '">' + resp[i].Author.FirstName + ' ' + resp[i].Author.LastName + '</a></h5><h5><strong>Date:</strong> ' + dateText + '</h5><div>' + resp[i].Body + '</div>');
+                    $(currentElem).append('<h3><a href="' + resp[i].LinkToReadPosts + '">' + resp[i].Subject + '</a></h3><h5><strong>By: </strong><a href=" ' + resp[i].LinkToAuthorProfile + '">' + resp[i].FirstLast + '</a></h5><h5><strong>Date:</strong> ' + dateText + '</h5><div>' + resp[i].Content + '</div>');
                 }
             }
 
